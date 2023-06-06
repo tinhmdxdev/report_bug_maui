@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestMaui.HomePage"
+             xmlns:vm="clr-namespace:TestMaui.Demo">
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Orientation="Vertical"
+                 VerticalOptions="CenterAndExpand"
+                 HorizontalOptions="CenterAndExpand"
+                 Spacing="8"
+                 Padding="8">
+        <CarouselView WidthRequest="200"
+                      HeightRequest="200"
+                      ItemsSource="{Binding Items}"
+                      Loop="False"
+                      HorizontalScrollBarVisibility="Never"
+                      Position="{Binding CarouselCurrentItemIndex}"
+                      BackgroundColor="LightBlue">
+            <CarouselView.Shadow>
+                <Shadow Brush="Black"
+                        Offset="0,0"
+                        Radius="4"
+                        Opacity="0.4"/>
+            </CarouselView.Shadow>
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="vm:DemoData">
+                    <ContentView>
+                        <StackLayout Orientation="Vertical"
+                                     VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="CenterAndExpand"
+                                     WidthRequest="200">
+                            <Image Source="{Binding Image}"
+                                   HeightRequest="60"/>
+                            <Label Text="{Binding Title}"
+                                   FontSize="Large"
+                                   TextColor="Black"
+                                   HorizontalTextAlignment="Center"
+                                   BackgroundColor="LightBlue"/>
+                        </StackLayout>
+                    </ContentView>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <StackLayout Orientation="Horizontal" Spacing="4" HorizontalOptions="CenterAndExpand" HeightRequest="50" BackgroundColor="LightGray" WidthRequest="200">
+            <Button Style="{StaticResource NormalWindowsButtonStyle}"
+                    Text="1"
+                    TextColor="Black"
+                    Command="{Binding OneCommand}"
+                    HorizontalOptions="CenterAndExpand"/>
+            <Button Style="{StaticResource NormalWindowsButtonStyle}"
+                    Text="2"
+                    TextColor="Black"
+                    Command="{Binding TwoCommand}"
+                    HorizontalOptions="CenterAndExpand"/>
+            <Button Style="{StaticResource NormalWindowsButtonStyle}"
+                    Text="3"
+                    TextColor="Black"
+                    Command="{Binding ThreeCommand}"
+                    HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
